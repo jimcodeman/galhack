@@ -1,0 +1,39 @@
+* {
+	background-color: rgb(20,20,20) ;
+	padding: 0px 0px ;
+	margin: 0px 0px ;
+}
+
+.Menu {
+	display: flex ;
+	flex-wrap : wrap ;
+	flex-direction: row ;
+
+	position: absolute; ;
+	top:-0.5vh;
+}
+
+.Tabs {
+	background-color: rgb( 50 , 100 , 50 ) ;
+	border-style: none ;
+
+	box-shadow: 0.25vw 0.5vh 0vh 0vw rgba(0, 0, 0, .5);
+	text-align: center;
+
+	margin: 0px 0.25vw ;
+	padding: 1.5vh 3vw ;
+
+}
+
+.Tabs:hover{
+	background-color: rgb( 50 , 112 , 50 ) ;
+
+	box-shadow: 0.25vw 0.5vh 0vh 0vw rgba(0, 0, 0, .6);
+
+	position: relative;
+	top: 0.5vh;
+}
+
+.Tabs:active{
+	background-color: rgb( 50 , 90 , 50 ) ;
+}

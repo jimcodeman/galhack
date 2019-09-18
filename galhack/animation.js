@@ -16,7 +16,7 @@ function positionParticle( i ) {
 	if ( Math.abs(vel [ i ].x) < 0.1 ) vel [ i ].x = 1 ;
 	if ( Math.abs(vel [ i ].y) < 0.1 ) vel [ i ].y = 1 ;
 
-	pos[ i ] = {x:Math.random()*($(document).width())-50,y:Math.random()*($(document).height())-50} ;
+	pos[ i ] = {x:Math.random()*($(document).width())-100,y:Math.random()*($(document).height())-100} ;
 }
 
 function createParticle( i ) {
@@ -31,7 +31,7 @@ for ( var i = 0 ; i < count ; i++ ) {
 	positionParticle(i);
 }
 
-setInterval(frame,16);
+setInterval(frame,1000/30);
 
 function bounce ( i ) {
 	var elem = document.getElementById('Rod'+i) ;
@@ -39,19 +39,27 @@ function bounce ( i ) {
 	ranomize(elem);
 }
 
+var startDate = new Date();
+
 function frame ( ) {
+
+	var endDate   = new Date();
+	var deltaTime = 1/(endDate.getTime() - startDate.getTime()) ;
+	startDate = endDate ;
 
 	$(window).trigger("resize");
 
 	for ( var i = 0 ; i < count ; i++ ) {
 		var speed = 6 ;
-		pos[i].x += vel[i].x*speed*0.016 ;
-		pos[i].y += vel[i].y*speed*0.016 ;
+
+		if ( pos[i].x <= 0 || ( pos[i].x + vel[i].x*speed*deltaTime*2 ) >= ($(document).width()-20) || pos[i].y <= 0 || ( pos[i].y + vel[i].y*speed*deltaTime*2 ) >= ($(document).height()-20) )
+			bounce(i);
+		else{
+			pos[i].x += vel[i].x*speed*deltaTime ;
+			pos[i].y += vel[i].y*speed*deltaTime ;
+		}
 
 		setpos(document.getElementById('Rod'+i),pos[i].x,pos[i].y);
-
-		if ( pos[i].x < 0 || ( pos[i].x + vel[i].x*2 ) > ($(document).width()) || pos[i].y < 0 || ( pos[i].y + vel[i].y*2 ) > ($(document).height()) )
-			bounce(i);
 
 	}
 }
