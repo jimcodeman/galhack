@@ -1,2 +1,2 @@
 # galhack
-an open source website for algorithm learning courses
+( sample ) Open source website for scientific courses
